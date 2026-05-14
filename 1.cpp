@@ -3,7 +3,6 @@
 
 using namespace std;
 
-
 void printString(char* userString) {
     cout << "\nString:\n";
 
@@ -23,7 +22,7 @@ void printString(char* userString) {
 }
 
 void deleteCharacter(char* userString) {
-    char userInput; // 
+    char userInput; 
     cout << "\nSelect a character to delete: ";
     cin >> userInput;
 
@@ -46,12 +45,40 @@ void deleteCharacter(char* userString) {
 }
 
 void findFirstChar(char* userString) {
+    char userInput; 
+    cout << "\nInput a character to find: ";
+    cin >> userInput;
 
+    if (cin.fail()) {
+        cout << "\nType in a single character!";
+        return;
+    }
+
+    cout << "\nWords that start with \"" << userInput << "\":\n";
+
+    char *word = strtok(userString, " ,.:;!?");
+
+    while (word) {
+        if (strlen(word)>1 && word[0] == userInput) {
+            cout << word << "\t";
+        }
+
+        word = strtok(NULL, " ,.:;!?");
+    }
+    cout << "\n";
 }
 
 void wordCount(char* userString) {
     char *word = strtok(userString, " ,.;:!?");
     int wordCount = 0;
+    while (word) {
+        if (strlen(word) > 1) {
+            wordCount++;
+        }
+        word = strtok(NULL, " ,.:;!?");
+    }
+
+    cout << "\nTotal number of words: " << wordCount << "\n";
 }
 
 void Menu(char* userString) {
@@ -83,10 +110,12 @@ void Menu(char* userString) {
             deleteCharacter(userString);
         }
         else if (option == 2) {
-
+            cout << "\nFind words that start with a character selected!\n";
+            findFirstChar(userString);
         }
         else if (option == 3) {
-
+            cout << "\nWord count selected!\n";
+            wordCount(userString);
         }
         else if (option == 4) {
             cout << "\nPrinting the string selected!\n";
