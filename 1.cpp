@@ -22,7 +22,8 @@ void printString(char* userString) {
 }
 
 void deleteCharacter(char* userString) {
-    char userInput; 
+
+    char userInput;
     cout << "\nSelect a character to delete: ";
     cin >> userInput;
 
@@ -30,6 +31,8 @@ void deleteCharacter(char* userString) {
         cout << "\nType in a single character!";
         return;
     }
+
+
 
     int j = 0;
 
@@ -60,14 +63,16 @@ void findFirstChar(char* userString) {
 
     char *word = strtok(copyUserString, " ,.:;!?");
 
+    int count = 0;
     while (word) {
         if (strlen(word)>1 && word[0] == userInput) {
             cout << word << "\t";
+            count += 1;
         }
 
         word = strtok(NULL, " ,.:;!?");
     }
-    cout << "\n";
+    cout << "\nCount: " << count << "\n";
 }
 
 void wordCount(char* userString) {
