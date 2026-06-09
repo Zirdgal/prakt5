@@ -6,15 +6,15 @@ using namespace std;
 void printString(char* userString) {
     cout << "\nString:\n";
 
-    char temp[101];
-    strcpy(temp, userString);
+    char copyUserString[101];
+    strcpy(copyUserString, userString);
 
-    char *word = strtok(temp, " ,.:;?!");
+    char *word = strtok(copyUserString, " ,.:;?!");
     int i = 0;
 
     while(word) {
         if (strlen(word) > 1) {
-            cout << word << "\t";
+            cout << word << " ";
         }
         word = strtok(NULL, " .,:;?!");
     }
@@ -45,6 +45,8 @@ void deleteCharacter(char* userString) {
 }
 
 void findFirstChar(char* userString) {
+    char copyUserString[101];
+    strcpy(copyUserString, userString);
     char userInput; 
     cout << "\nInput a character to find: ";
     cin >> userInput;
@@ -56,7 +58,7 @@ void findFirstChar(char* userString) {
 
     cout << "\nWords that start with \"" << userInput << "\":\n";
 
-    char *word = strtok(userString, " ,.:;!?");
+    char *word = strtok(copyUserString, " ,.:;!?");
 
     while (word) {
         if (strlen(word)>1 && word[0] == userInput) {
@@ -69,7 +71,9 @@ void findFirstChar(char* userString) {
 }
 
 void wordCount(char* userString) {
-    char *word = strtok(userString, " ,.;:!?");
+    char copyUserString[101];
+    strcpy(copyUserString, userString);
+    char *word = strtok(copyUserString, " ,.;:!?");
     int wordCount = 0;
     while (word) {
         if (strlen(word) > 1) {
@@ -92,7 +96,7 @@ void Menu(char* userString) {
         cout << "\n> (1) Delete a character";
         cout << "\n> (2) Find words that start with a character";
         cout << "\n> (3) Get the count of total words";
-        cout << "\n> (4) Print the string";
+        cout << "\n> (4) Print all words";
         cout << "\n> (5) Exit";
         cout << "\n---------------------------------------";
         cout << "\nSelect an option(enter a number): ";
@@ -118,7 +122,7 @@ void Menu(char* userString) {
             wordCount(userString);
         }
         else if (option == 4) {
-            cout << "\nPrinting the string selected!\n";
+            cout << "\nPrinting all words selected!\n";
             printString(userString);
         }
         else if (option == 5) {
